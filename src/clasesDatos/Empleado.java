@@ -1,5 +1,7 @@
 package clasesDatos;
 
+import java.util.Objects;
+
 public class Empleado {
 	private String dni;
 	private String nombre;
@@ -124,10 +126,31 @@ public class Empleado {
 	}
 
 	////////////////////toString/////////////////////
+	
 	@Override
 	public String toString() {
 		return "Empleado [dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + ", categoria=" + categoria
 				+ ", edad=" + edad + ", clubSocial=" + clubSocial + ", sueldo=" + sueldo + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(apellidos, categoria, clubSocial, dni, edad, nombre, sueldo);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Empleado other = (Empleado) obj;
+		return Objects.equals(apellidos, other.apellidos) && Objects.equals(categoria, other.categoria)
+				&& clubSocial == other.clubSocial && Objects.equals(dni, other.dni) && edad == other.edad
+				&& Objects.equals(nombre, other.nombre)
+				&& Float.floatToIntBits(sueldo) == Float.floatToIntBits(other.sueldo);
 	}
 	
 	
